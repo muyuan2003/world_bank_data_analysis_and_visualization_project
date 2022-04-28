@@ -7,7 +7,7 @@ import wbgapi as wb
 pd.options.display.max_columns = None
 pd.options.display.max_rows = None
 
-#Plot #1
+# Plot #1(histplot): Percentage of Population Having Access to Basic Drinking Facilities per Country in 2017
 df_water = wb.data.DataFrame('SH.H2O.BASW.ZS', time = 2017, labels = True)
 df_water = df_water.dropna()
 df_water = df_water.loc[:'AFG']
@@ -25,7 +25,7 @@ plot_water.set_ylabel('Number of Countries', fontsize = 12)
 plot_water.yaxis.set_ticks(np.arange(0, 145, 5))
 plot_water.set(xlim = (30, 100))
 
-#Plot #2
+# Plot #2(histplot): Percentage of Population Having Access to Proper Nutrition per Country in 2017
 df_food = wb.data.DataFrame('SN.ITK.DEFC.ZS', time = 2017, labels = True)
 df_food = df_food.dropna()
 df_food = df_food.loc[:'AFG']
@@ -42,5 +42,5 @@ plot_food.set_ylabel('Number of Countries', fontsize = 12)
 plot_food.yaxis.set_ticks(np.arange(0, 115, 10))
 plot_food.set(xlim = (30, 100))
 
-#Show both plots
+# Show both plots
 plt.show()

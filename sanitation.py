@@ -21,7 +21,7 @@ studied_countries = df['Country']
 print(studied_countries)
 print('')
 
-#Plot #1
+# Plot #1(lineplot): Percentage of Population with Handwashing Facilities by Country from 2013 to 2017
 df_sanitation_total = wb.data.DataFrame('SH.STA.HYGN.ZS', time = range(2013, 2018), labels = True)
 df_sanitation_total = df_sanitation_total[df_sanitation_total['Country'].isin(studied_countries)]
 df_sanitation_total = df_sanitation_total.dropna()
@@ -41,8 +41,9 @@ plot_sanitation_total.set_title('Percentage of Population with Handwashing Facil
 plot_sanitation_total.set_xlabel('Country', fontsize = 12)
 plot_sanitation_total.set_ylabel('% with Handwashing Facilities', fontsize = 12)
 plot_sanitation_total.yaxis.set_ticks(np.arange(0, 30, 5))
+sns.move_legend(plot_sanitation_total, "lower left", ncol = 2)
 
-#Plot #2
+# Plot #2(barplot): Percentage of Population with Handwashing Facilities by Settlement Type by Country in 2017
 df_sanitation_urban = wb.data.DataFrame('SH.STA.HYGN.UR.ZS', time = 2017, labels = True)
 df_sanitation_urban = df_sanitation_urban[df_sanitation_urban['Country'].isin(studied_countries)]
 df_sanitation_urban = df_sanitation_urban.dropna()
@@ -67,6 +68,6 @@ plot_sanitation_ur_and_ru.set_xlabel('Country', fontsize = 12)
 plot_sanitation_ur_and_ru.set_ylabel('% with Handwashing Facilities', fontsize = 12)
 plot_sanitation_ur_and_ru.yaxis.set_ticks(np.arange(0, 40, 5))
 
-#Show both plots
+# Show both plots
 plt.show()
 

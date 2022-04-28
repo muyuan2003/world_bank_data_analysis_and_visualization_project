@@ -14,7 +14,7 @@ df_life_expectancy = df_life_expectancy.round(2)
 df_life_expectancy = df_life_expectancy.rename(columns = {'SP.DYN.LE00.MA.IN': 'Life Expectancy'})
 print('')
 
-#Plot #1
+# Plot #1(heatmap): Life Expectancy and Basic Needs for some of the Most Populated Countries in the World
 df_population_matrix = wb.data.DataFrame('SP.POP.TOTL', time = 2020, labels = True)
 df_population_matrix = df_population_matrix.loc[:'AFG']
 df_population_matrix = df_population_matrix.dropna()
@@ -58,8 +58,10 @@ plot_corr_matrix.set_title('Life Expectancy and Basic Needs for some of the Most
 plot_corr_matrix.set_xlabel('Life Expectancy and Basic Needs', fontsize = 12)
 plot_corr_matrix.set_ylabel('Countries', fontsize = 12)
 
-#Plot #2 and #3
 
+# Plot #2(scatterplot): Access to Potable Water vs Life Expectancy
+# Plot #3(regplot): Access to Food vs Life Expectancy
+# Both plots are shown together
 df_population = wb.data.DataFrame('SP.POP.TOTL', time = 2020, labels = True)
 df_population = df_population.loc[:'AFG']
 df_population = df_population.dropna()
@@ -94,7 +96,7 @@ plot_corr_le_food.set_xlabel('Percentage of Population Having Access to Proper N
 plot_corr_le_food.set_ylabel('Life Expectancy', fontsize = 12)
 plot_corr_le_food.set(xlim = (50, 100))
 
-#Plot #4
+# Plot #4(boxplot): Sanitation Level vs Life Expectancy
 df_sanitation = wb.data.DataFrame('SH.STA.HYGN.ZS', time = 2017, labels = True)
 df_sanitation = df_sanitation.dropna()
 df_sanitation = df_sanitation.round(2)
@@ -102,14 +104,12 @@ df_sanitation.columns = ['Country', '% of Pop. Having Soap']
 
 df_le_corr_sanitation = pd.merge(df_life_expectancy, df_sanitation, how = 'inner', on = 'Country')
 
-
+# sanitation_level(sanitation) provides the sanitation level of sanitation
 def sanitation_level(sanitation):
     if sanitation <= 50.0 :
         return 'Basic'
-
     if 50.0 < sanitation <= 80.0:
         return 'Average'
-
     if 80.0 < sanitation:
         return 'Good'
 
@@ -124,5 +124,5 @@ plot_corr_le_sanitation.set_title('Sanitation Level vs Life Expectancy', fontsiz
 plot_corr_le_sanitation.set_xlabel('Sanitation Level', fontsize = 12)
 plot_corr_le_sanitation.set_ylabel('Life Expectancy', fontsize = 12)
 
-#Show all plots
+# Show all plots
 plt.show()
